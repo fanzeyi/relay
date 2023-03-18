@@ -78,27 +78,6 @@ function updater(store: RecordSourceSelectorProxy) {
 The `__id` field is **NOT** something that your GraphQL API needs to expose. Instead, it's an identifier that Relay automatically adds to identify the connection record.
 :::
 
-### Accessing connections using `ConnectionHandler.getConnectionID`
-
-If we have access to the ID of the parent record that holds the connection, we can access the connection record by using the `ConnectionHandler.getConnectionID` API:
-
-```js
-const {ConnectionHandler} = require('relay-runtime');
-
-function updater(store: RecordSourceSelectorProxy) {
-  // Get the connection ID
-  const connectionID = ConnectionHandler.getConnectionID(
-    storyID, // passed as input to the mutation/subscription
-    'StoryComponent_story_comments_connection',
-  );
-
-  // Get the connection record
-  const connectionRecord = store.get(connectionID);
-
-  // ...
-}
-```
-
 ### Accessing connections using `ConnectionHandler.getConnection`
 
 If we have access to the parent record that holds the connection, we can access the connection record via the parent, by using the `ConnectionHandler.getConnection` API:
